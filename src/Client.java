@@ -1,29 +1,48 @@
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Client {
-    private int id;
+
+    private static int ultimIdClient = 0;
+    private int idClient;
     private String nume;
     private String prenume;
-    private Date dataInregistrare;
+    private LocalDate dataInregistrare;
     private String email;
 
+    private String username;
+    private String parola;
+
+    private boolean esteLogat;
+
     // Constructor
-    public Client(int id, String nume, String prenume, String email) {
-        this.id = id;
+    public Client(String nume, String prenume, LocalDate dataInregistrare, String email, String username, String parola) {
+        this.idClient = ++ultimIdClient;
         this.nume = nume;
         this.prenume = prenume;
         this.dataInregistrare = dataInregistrare;
         this.email = email;
+        this.username = username;
+        this.parola = parola;
+        this.esteLogat = false;
+    }
+
+    public boolean isEsteLogat() {
+        return esteLogat;
+    }
+
+    public void setEsteLogat(boolean esteLogat) {
+        this.esteLogat = esteLogat;
     }
 
     // Getter pentru id
     public int getId() {
-        return id;
+        return idClient;
     }
 
     // Setter pentru id
     public void setId(int id) {
-        this.id = id;
+        this.idClient = id;
     }
 
     // Getter pentru nume
@@ -46,30 +65,46 @@ public class Client {
         this.prenume = prenume;
     }
 
-    // Getter pentru dataInregistrare
-    public Date getDataInregistrare() {
+
+    public LocalDate getDataInregistrare() {
         return dataInregistrare;
     }
 
-    // Setter pentru dataInregistrare
-    public void setDataInregistrare(Date dataInregistrare) {
+
+    public void setDataInregistrare(LocalDate dataInregistrare) {
         this.dataInregistrare = dataInregistrare;
     }
 
-    // Getter pentru email
+
     public String getEmail() {
         return email;
     }
 
-    // Setter pentru email
+
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getParola() {
+        return parola;
+    }
+
+    public void setParola(String parola) {
+        this.parola = parola;
     }
 
     @Override
     public String toString() {
         return "Client{" +
-                "id=" + id +
+                "id=" + idClient +
                 ", nume='" + nume + '\'' +
                 ", prenume='" + prenume + '\'' +
                 ", dataInregistrare=" + dataInregistrare +

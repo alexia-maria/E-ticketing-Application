@@ -1,12 +1,12 @@
-import java.util.Date;
+import java.time.LocalDate;
+
 
 public class Concert extends Eveniment{
     private String artist;
     private String genMuzical;
-    private Date data;
 
-    public Concert(int id, String denumire, Date data, String organizator, Locatie locatie, int numarTotalBilete, int numarBileteRamase, String artist, String genMuzical) {
-        super(id, denumire, data, organizator, locatie, numarTotalBilete, numarBileteRamase);
+    public Concert(String tip, String denumire, LocalDate data, String organizator, Locatie locatie, int numarTotalBilete, int numarBileteRamase, String artist, String genMuzical) {
+        super( tip, denumire, data, organizator, locatie, numarTotalBilete, numarBileteRamase);
         this.artist = artist;
         this.genMuzical = genMuzical;
     }
@@ -28,7 +28,10 @@ public class Concert extends Eveniment{
     }
 
     @Override
-    public void cumparaBilet(){
-        System.out.println("Metoda");
+    public String toString() {
+        return super.toString()+"Concert{" +
+                "artist='" + artist + '\'' +
+                ", genMuzical='" + genMuzical + '\'' +
+                '}';
     }
 }

@@ -1,12 +1,14 @@
 public class Locatie {
+
+    private int ultimIdLocatie = 0;
     private int id;
     private String denumire;
     private String strada;
     private String oras;
     private String tara;
 
-    public Locatie(int id, String denumire, String strada, String oras, String tara) {
-        this.id = id;
+    public Locatie( String denumire, String strada, String oras, String tara) {
+        this.id = ++ultimIdLocatie;
         this.denumire = denumire;
         this.strada = strada;
         this.oras = oras;

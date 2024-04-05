@@ -1,13 +1,14 @@
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 public class StandUp extends Eveniment{
     private List<String> comedianti;
     private int varstaMinimaIntrare;
-    private Date data;
 
-    public StandUp(int id, String denumire, Date data, String organizator, Locatie locatie, int numarTotalBilete, int numarBileteRamase, List<String> comedianti, int varstaMinimaIntrare) {
-        super(id, denumire, data, organizator, locatie, numarTotalBilete, numarBileteRamase);
+
+    public StandUp(String tip, String denumire, LocalDate data, String organizator, Locatie locatie, int numarTotalBilete, int numarBileteRamase, List<String> comedianti, int varstaMinimaIntrare) {
+        super(tip, denumire, data, organizator, locatie, numarTotalBilete, numarBileteRamase);
         this.comedianti = comedianti;
         this.varstaMinimaIntrare = varstaMinimaIntrare;
     }
@@ -29,5 +30,10 @@ public class StandUp extends Eveniment{
     }
 
     @Override
-    public void cumparaBilet(){};
+    public String toString() {
+        return super.toString()+ "StandUp{" +
+                "comedianti=" + comedianti +
+                ", varstaMinimaIntrare=" + varstaMinimaIntrare +
+                '}';
+    }
 }

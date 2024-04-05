@@ -1,16 +1,23 @@
-import java.util.Date;
+import java.time.LocalDate;
 
 public abstract class Eveniment {
-    private int id;
+
+    private static int ultimId = 0;
+    private int idEveniment = 0;
+    private String tip;
     private String denumire;
+
+    private LocalDate data;
     private String organizator;
     private Locatie locatie;
     private int numarTotalBilete;
     private int numarBileteRamase;
 
-    public Eveniment(int id, String denumire, Date data, String organizator, Locatie locatie, int numarTotalBilete, int numarBileteRamase) {
-        this.id = id;
+    public Eveniment(String tip, String denumire, LocalDate data, String organizator, Locatie locatie, int numarTotalBilete, int numarBileteRamase) {
+        this.idEveniment = ++ultimId;
+        this.tip = tip;
         this.denumire = denumire;
+        this.data = data;
         this.organizator = organizator;
         this.locatie = locatie;
         this.numarTotalBilete = numarTotalBilete;
@@ -18,11 +25,19 @@ public abstract class Eveniment {
     }
 
     public int getId() {
-        return id;
+        return idEveniment;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.idEveniment = id;
+    }
+
+    public String getTip() {
+        return tip;
+    }
+
+    public void setTip(String tip) {
+        this.tip = tip;
     }
 
     public String getDenumire() {
@@ -33,7 +48,13 @@ public abstract class Eveniment {
         this.denumire = denumire;
     }
 
+    public LocalDate getData() {
+        return data;
+    }
 
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
 
     public String getOrganizator() {
         return organizator;
@@ -70,14 +91,15 @@ public abstract class Eveniment {
     @Override
     public String toString() {
         return "Eveniment{" +
-                "id=" + id +
+                "id=" + idEveniment +
                 ", denumire='" + denumire + '\'' +
                 ", organizator='" + organizator + '\'' +
+                ", data= " + data  +
                 ", locatie=" + locatie +
                 ", numarTotalBilete=" + numarTotalBilete +
                 ", numarBileteRamase=" + numarBileteRamase +
                 '}';
     }
 
-    public abstract void cumparaBilet();
+
 }
