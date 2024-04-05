@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Main {
 
     //de facut
+    /* builder pattern pt creat obiecte
     /* Enum pentru tipul de eveniment,
      ?e nevoie de factory pt crearea fiecarui tip de eveniment
      interfete pentru fiecare service(cu metodele fara corp)
