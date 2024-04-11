@@ -1,7 +1,7 @@
 import java.util.List;
 import java.util.Scanner;
 
-public class ServiceOras {
+public class ServiceOras implements ServiceOrasInterface{
     private final Scanner scanner = new Scanner(System.in);
 
     private static ServiceOras instanta = null;
@@ -18,10 +18,10 @@ public class ServiceOras {
     public void sorteazaEvenimenteleDupaOras(List<Eveniment> evenimente){
 
         System.out.println("Introduceti orasul: ");
-        String orasSortare = scanner.nextLine();
+        String orasSortare = scanner.nextLine().toLowerCase();
 
         for(Eveniment e: evenimente){
-            if(e.getLocatie().getOras().equals(orasSortare)){
+            if(e.getLocatie().getOras().toLowerCase().equals(orasSortare)){
                 System.out.println(e.toString());
             }
         }
@@ -29,14 +29,14 @@ public class ServiceOras {
 
     public void sorteazaEvenimenteleDupaOrasSiData(List<Eveniment> evenimente){
         System.out.println("Introduceti orasul: ");
-        String orasSortare = scanner.nextLine();
+        String orasSortare = scanner.nextLine().toLowerCase();
 
         System.out.println("Introduceti luna in care doriti sa cautati: ");
         int lunaSortare = scanner.nextInt();
         scanner.nextLine();
 
         for(Eveniment e: evenimente){
-            if(e.getData().getMonthValue() == lunaSortare && e.getLocatie().getOras().equals(orasSortare)){
+            if(e.getData().getMonthValue() == lunaSortare && e.getLocatie().getOras().toLowerCase().equals(orasSortare)){
                 System.out.println(e.toString());
             }
         }

@@ -1,13 +1,15 @@
 import java.time.LocalDate;
 import java.util.*;
 
-public class ServiceBilete {
+public class ServiceBilete implements ServiceBileteInterface{
 
     private final Scanner scanner = new Scanner(System.in);
 
     private static ServiceBilete instanta = null;
 
     private List<Tranzactie> tranzactii;
+
+    private Client clientLogat;
 
     private ServiceBilete() {
         this.tranzactii = new ArrayList<>();
@@ -18,6 +20,14 @@ public class ServiceBilete {
             instanta = new ServiceBilete();
         }
         return instanta;
+    }
+
+    public Client getClientLogat() {
+        return clientLogat;
+    }
+
+    public void setClientLogat(Client clientLogat) {
+        clientLogat = clientLogat;
     }
 
     public boolean logare(List<Client> clienti, String usernameLogare, String parolaLogare){
@@ -31,6 +41,7 @@ public class ServiceBilete {
             if(c.getUsername().equals(usernameLogare) && c.getParola().equals(parolaLogare)){
                 System.out.println("Autentificare reusita");
                 c.setEsteLogat(true);
+                clientLogat = c;
                 return true;
             }
         }
@@ -45,43 +56,49 @@ public class ServiceBilete {
             if(c.getUsername().equals(usernameLogare)){
                 System.out.println("Delogare reusita");
                 c.setEsteLogat(false);
+                clientLogat = null;
             }
         }
     }
 
-    public void cumparaBilet(List<Client> clienti, List<Eveniment> evenimente, Client utilizator){
+    public void cumparaBilet(List<Client> clienti, List<Eveniment> evenimente, Client clientLogat){
       //  System.out.println(utilizator.getId());
         Set<Integer> idEvenimenteBilet = new HashSet<>();
        // int costTotalTranzactie = 0;
-        if(utilizator.isEsteLogat()){
-            String raspuns = "da";
-            while(!(raspuns.equals("nu"))){
-                System.out.println("Introduceti denumirea evenimentului pentru care doriti sa cumparati bilete");
-                String denumireEvenimentBilet = scanner.nextLine();
-                System.out.println("Cate bilete doriti sa cumparati?");
-                int numarBilete = scanner.nextInt();
-                scanner.nextLine();
-                for(Eveniment e:evenimente){
-                    if(e.getDenumire().equals(denumireEvenimentBilet)){
-                        Eveniment evenimentCopie = e;
-                        if(evenimentCopie.getNumarBileteRamase() < numarBilete){
-                            System.out.println("Nu sunt suficiente bilete ramase la evenimentul dorit.");
-                        }else{
-                            e.setNumarBileteRamase(e.getNumarBileteRamase()-numarBilete);
-                            idEvenimenteBilet.add(e.getId());
+        if(clientLogat == null){
+            System.out.println("Nu sunteti logat");
+        }else{
+            if(clientLogat.isEsteLogat()){
+                String raspuns = "da";
+                while(!(raspuns.equals("nu"))){
+                    System.out.println("Introduceti denumirea evenimentului pentru care doriti sa cumparati bilete");
+                    String denumireEvenimentBilet = scanner.nextLine();
+                    System.out.println("Cate bilete doriti sa cumparati?");
+                    int numarBilete = scanner.nextInt();
+                    scanner.nextLine();
+                    for(Eveniment e:evenimente){
+                        if(e.getDenumire().equals(denumireEvenimentBilet)){
+                            Eveniment evenimentCopie = e;
+                            if(evenimentCopie.getNumarBileteRamase() < numarBilete){
+                                System.out.println("Nu sunt suficiente bilete ramase la evenimentul dorit.");
+                            }else{
+                                e.setNumarBileteRamase(e.getNumarBileteRamase()-numarBilete);
+                                idEvenimenteBilet.add(e.getId());
+                            }
                         }
                     }
+                    System.out.println("Mai doriti sa cumparati bilete la alt eveniment? (da/nu)");
+                    raspuns = scanner.nextLine();
                 }
-                System.out.println("Mai doriti sa cumparati bilete la alt eveniment? (da/nu)");
-                raspuns = scanner.nextLine();
+                Tranzactie t = new Tranzactie(clientLogat.getId(), idEvenimenteBilet, LocalDate.now(), 15);
+                tranzactii.add(t);
+                System.out.println("Tranzactie reusita");
+            }else{
+                System.out.println("Nu sunteti logat");
             }
-           Tranzactie t = new Tranzactie(utilizator.getId(), idEvenimenteBilet, LocalDate.now(), 15);
-            tranzactii.add(t);
-            System.out.println("Tranzactie reusita");
-        }else{
-            System.out.println("Nu sunteti logat");
         }
-    }
+        }
+
 
     public void afiseazaTranzactii(){
         for(Tranzactie tranzactie:tranzactii){

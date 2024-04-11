@@ -1,7 +1,8 @@
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
-public class ServiceTip {
+public class ServiceTip implements ServiceTipInterface{
 
     private final Scanner scanner = new Scanner(System.in);
 

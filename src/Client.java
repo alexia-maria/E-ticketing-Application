@@ -15,16 +15,78 @@ public class Client {
 
     private boolean esteLogat;
 
-    // Constructor
-    public Client(String nume, String prenume, LocalDate dataInregistrare, String email, String username, String parola) {
+     Client(){
         this.idClient = ++ultimIdClient;
-        this.nume = nume;
-        this.prenume = prenume;
-        this.dataInregistrare = dataInregistrare;
-        this.email = email;
-        this.username = username;
-        this.parola = parola;
-        this.esteLogat = false;
+    }
+
+    // Constructor
+//    public Client(String nume, String prenume, LocalDate dataInregistrare, String email, String username, String parola) {
+//        this.idClient = ++ultimIdClient;
+//        this.nume = nume;
+//        this.prenume = prenume;
+//        this.dataInregistrare = dataInregistrare;
+//        this.email = email;
+//        this.username = username;
+//        this.parola = parola;
+//        this.esteLogat = false;
+//    }
+
+    public static class ClientBuilder{
+        private Client client;
+
+        private static ClientBuilder instance;
+
+        public ClientBuilder(){
+            client = new Client();
+        }
+
+//        public static ClientBuilder getInstance(){
+//            if(instance == null){
+//                instance = new ClientBuilder();
+//            }
+//            return instance;
+//        }
+
+        public ClientBuilder setNume(String nume){
+            client.setNume(nume);
+            return this;
+        }
+
+        public ClientBuilder setPrenume(String prenume){
+            client.setPrenume(prenume);
+            return this;
+        }
+
+        public ClientBuilder setDataInregistrare(LocalDate dataInregistrare){
+            client.setDataInregistrare(dataInregistrare);
+            return this;
+        }
+
+        public ClientBuilder setEmail(String email){
+            client.setEmail(email);
+            return this;
+        }
+
+        public ClientBuilder setUsername(String username){
+            client.setUsername(username);
+            return this;
+        }
+
+        public ClientBuilder setParola(String parola){
+            client.setParola(parola);
+            return this;
+        }
+
+        public ClientBuilder setEsteLogat(boolean esteLogat){
+            client.setEsteLogat(esteLogat);
+            return this;
+        }
+
+        public Client build() {
+            return client;
+        }
+
+
     }
 
     public boolean isEsteLogat() {

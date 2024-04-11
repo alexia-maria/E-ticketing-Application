@@ -13,15 +13,68 @@ public abstract class Eveniment {
     private int numarTotalBilete;
     private int numarBileteRamase;
 
-    public Eveniment(String tip, String denumire, LocalDate data, String organizator, Locatie locatie, int numarTotalBilete, int numarBileteRamase) {
+//    public Eveniment(String tip, String denumire, LocalDate data, String organizator, Locatie locatie, int numarTotalBilete, int numarBileteRamase) {
+//        this.idEveniment = ++ultimId;
+//        this.tip = tip;
+//        this.denumire = denumire;
+//        this.data = data;
+//        this.organizator = organizator;
+//        this.locatie = locatie;
+//        this.numarTotalBilete = numarTotalBilete;
+//        this.numarBileteRamase = numarBileteRamase;
+//    }
+
+    Eveniment(){
         this.idEveniment = ++ultimId;
-        this.tip = tip;
-        this.denumire = denumire;
-        this.data = data;
-        this.organizator = organizator;
-        this.locatie = locatie;
-        this.numarTotalBilete = numarTotalBilete;
-        this.numarBileteRamase = numarBileteRamase;
+    }
+
+    public static class EvenimentBuilder{
+        private Eveniment eveniment;
+        private static EvenimentBuilder instanta;
+
+        private EvenimentBuilder(){}
+
+        public static EvenimentBuilder getInstance(){
+            if(instanta == null){
+                instanta = new EvenimentBuilder();
+            }
+            return instanta;
+        }
+
+        public EvenimentBuilder setTip(String tip){
+            eveniment.setTip(tip);
+            return this;
+        }
+
+        public EvenimentBuilder setDenumire(String denumire){
+            eveniment.setDenumire(denumire);
+            return this;
+        }
+
+        public EvenimentBuilder setData(LocalDate data){
+            eveniment.setData(data);
+            return this;
+        }
+
+        public EvenimentBuilder setOrganizator(String organizator){
+            eveniment.setOrganizator(organizator);
+            return this;
+        }
+
+        public EvenimentBuilder setLocatie(Locatie locatie){
+            eveniment.setLocatie(locatie);
+            return this;
+        }
+
+        public EvenimentBuilder setNumarTotalBilete(int numarTotalBilete){
+            eveniment.setNumarTotalBilete(numarTotalBilete);
+            return this;
+        }
+
+        public EvenimentBuilder setNumarBileteRamase(int numarBileteRamase){
+            eveniment.setNumarBileteRamase(numarBileteRamase);
+            return this;
+        }
     }
 
     public int getId() {
@@ -92,6 +145,7 @@ public abstract class Eveniment {
     public String toString() {
         return "Eveniment{" +
                 "id=" + idEveniment +
+                ", tip= " + tip + '\''+
                 ", denumire='" + denumire + '\'' +
                 ", organizator='" + organizator + '\'' +
                 ", data= " + data  +

@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 import java.util.*;
 
-public class PlatformaET {
+public class PlatformaET implements PlatformaETInterface{
 
     private final Scanner scanner = new Scanner(System.in);
     private List<Client> clienti;
@@ -132,7 +132,21 @@ public class PlatformaET {
         System.out.println("Introduceti genul muzical al concertului: ");
         String genMuzicalConcert = scanner.nextLine();
 
-        Eveniment e = new Concert(tipEveniment, denumireEveniment, dataEveniment, organizatorEveniment, locatieEveniment, numarTotalBileteEveniment, numarBileteRamaseEveniment, artistConcert, genMuzicalConcert);
+//        Eveniment e = new Concert(tipEveniment, denumireEveniment, dataEveniment, organizatorEveniment, locatieEveniment, numarTotalBileteEveniment, numarBileteRamaseEveniment, artistConcert, genMuzicalConcert);
+//
+//        adaugaEvenimente(e);
+
+        Eveniment e = new Concert.ConcertBuilder()
+                .setTip()
+                .setDenumire(denumireEveniment)
+                .setLocatie(locatieEveniment)
+                .setData(dataEveniment)
+                .setOrganizator(organizatorEveniment)
+                .setNumarTotalBilete(numarTotalBileteEveniment)
+                .setNumarBileteRamase(numarBileteRamaseEveniment)
+                .setArtist(artistConcert)
+                .setGenMuzical(genMuzicalConcert)
+                .build();
 
         adaugaEvenimente(e);
     }
@@ -183,13 +197,27 @@ public class PlatformaET {
         System.out.println("Introduceti durata spectacolului: ");
         int durataBalet = scanner.nextInt();
 
-        Eveniment e = new Balet(tipEveniment, denumireEveniment, dataEveniment, organizatorEveniment, locatieEveniment, numarTotalBileteEveniment, numarBileteRamaseEveniment, listaBalerini, durataBalet);
+//        Eveniment e = new Balet(tipEveniment, denumireEveniment, dataEveniment, organizatorEveniment, locatieEveniment, numarTotalBileteEveniment, numarBileteRamaseEveniment, listaBalerini, durataBalet);
+//
+//        adaugaEvenimente(e);
+
+        Eveniment e = new Balet.BaletBuilder()
+                .setTip()
+                .setDenumire(denumireEveniment)
+                .setLocatie(locatieEveniment)
+                .setData(dataEveniment)
+                .setOrganizator(organizatorEveniment)
+                .setNumarTotalBilete(numarTotalBileteEveniment)
+                .setNumarBileteRamase(numarBileteRamaseEveniment)
+                .setBalerini(listaBalerini)
+                .setDurataSpectacol(durataBalet)
+                .build();
 
         adaugaEvenimente(e);
 
     }
 
-    void citesteEvenimentSportiv(){
+   public void citesteEvenimentSportiv(){
         String tipEveniment = "Eveniment sportiv";
 
         System.out.println("Introduceti denumirea evenimentului: ");
@@ -235,7 +263,21 @@ public class PlatformaET {
 
         List<String> listaEchipeEveniment = new ArrayList<>(Arrays.asList(linieS.split("\\s*,\\s*")));
 
-        Eveniment e = new EvenimentSportiv(tipEveniment, denumireEveniment, dataEveniment, organizatorEveniment, locatieEveniment, numarTotalBileteEveniment, numarBileteRamaseEveniment, sportEveniment, listaEchipeEveniment);
+//        Eveniment e = new EvenimentSportiv(tipEveniment, denumireEveniment, dataEveniment, organizatorEveniment, locatieEveniment, numarTotalBileteEveniment, numarBileteRamaseEveniment, sportEveniment, listaEchipeEveniment);
+//        adaugaEvenimente(e);
+
+        Eveniment e = new EvenimentSportiv.EvenimentSportivBuilder()
+                .setTip()
+                .setDenumire(denumireEveniment)
+                .setLocatie(locatieEveniment)
+                .setData(dataEveniment)
+                .setOrganizator(organizatorEveniment)
+                .setNumarTotalBilete(numarTotalBileteEveniment)
+                .setNumarBileteRamase(numarBileteRamaseEveniment)
+                .setSport(sportEveniment)
+                .setEchipe(listaEchipeEveniment)
+                .build();
+
         adaugaEvenimente(e);
     }
 
@@ -286,7 +328,21 @@ public class PlatformaET {
 
         List<String> listaArtistiEveniment = new ArrayList<>(Arrays.asList(linie.split("\\s*,\\s*")));
 
-        Eveniment e = new Festival(tipEveniment, denumireEveniment, dataEveniment, organizatorEveniment, locatieEveniment, numarTotalBileteEveniment, numarBileteRamaseEveniment, numarSceneEveniment, listaArtistiEveniment);
+//        Eveniment e = new Festival(tipEveniment, denumireEveniment, dataEveniment, organizatorEveniment, locatieEveniment, numarTotalBileteEveniment, numarBileteRamaseEveniment, numarSceneEveniment, listaArtistiEveniment);
+//        adaugaEvenimente(e);
+
+        Eveniment e = new Festival.FestivalBuilder()
+                .setTip()
+                .setDenumire(denumireEveniment)
+                .setLocatie(locatieEveniment)
+                .setData(dataEveniment)
+                .setOrganizator(organizatorEveniment)
+                .setNumarTotalBilete(numarTotalBileteEveniment)
+                .setNumarBileteRamase(numarBileteRamaseEveniment)
+                .setNumarScene(numarSceneEveniment)
+                .setArtisti(listaArtistiEveniment)
+                .build();
+
         adaugaEvenimente(e);
     }
 
@@ -335,7 +391,21 @@ public class PlatformaET {
         int durataFilm = scanner.nextInt();
         scanner.nextLine();
 
-        Eveniment e = new Film(tipEveniment, denumireEveniment, dataEveniment, organizatorEveniment, locatieEveniment, numarTotalBileteEveniment, numarBileteRamaseEveniment, genFilm, durataFilm);
+//        Eveniment e = new Film(tipEveniment, denumireEveniment, dataEveniment, organizatorEveniment, locatieEveniment, numarTotalBileteEveniment, numarBileteRamaseEveniment, genFilm, durataFilm);
+//        adaugaEvenimente(e);
+
+        Eveniment e = new Film.FilmBuilder()
+                .setTip()
+                .setDenumire(denumireEveniment)
+                .setLocatie(locatieEveniment)
+                .setData(dataEveniment)
+                .setOrganizator(organizatorEveniment)
+                .setNumarTotalBilete(numarTotalBileteEveniment)
+                .setNumarBileteRamase(numarBileteRamaseEveniment)
+                .setGenFilm(genFilm)
+                .setDurata(durataFilm)
+                .build();
+
         adaugaEvenimente(e);
     }
 
@@ -383,7 +453,21 @@ public class PlatformaET {
         System.out.println("Introduceti soprana care va canta la opera: ");
         String sopranaOpera = scanner.nextLine();
 
-        Eveniment e = new Opera(tipEveniment, denumireEveniment, dataEveniment, organizatorEveniment, locatieEveniment, numarTotalBileteEveniment, numarBileteRamaseEveniment, tenorOpera, sopranaOpera);
+//        Eveniment e = new Opera(tipEveniment, denumireEveniment, dataEveniment, organizatorEveniment, locatieEveniment, numarTotalBileteEveniment, numarBileteRamaseEveniment, tenorOpera, sopranaOpera);
+//
+//        adaugaEvenimente(e);
+
+        Eveniment e = new Opera.OperaBuilder()
+                .setTip()
+                .setDenumire(denumireEveniment)
+                .setLocatie(locatieEveniment)
+                .setData(dataEveniment)
+                .setOrganizator(organizatorEveniment)
+                .setNumarTotalBilete(numarTotalBileteEveniment)
+                .setNumarBileteRamase(numarBileteRamaseEveniment)
+                .setTenor(tenorOpera)
+                .setSoprana(sopranaOpera)
+                .build();
 
         adaugaEvenimente(e);
     }
@@ -434,7 +518,21 @@ public class PlatformaET {
         System.out.println("Introduceti genul piesei de teatru: ");
         String genTeatru = scanner.nextLine();
 
-        Eveniment e = new PiesaDeTeatru(tipEveniment, denumireEveniment, dataEveniment, organizatorEveniment, locatieEveniment, numarTotalBileteEveniment, numarBileteRamaseEveniment, distributieTeatru, genTeatru);
+//        Eveniment e = new PiesaDeTeatru(tipEveniment, denumireEveniment, dataEveniment, organizatorEveniment, locatieEveniment, numarTotalBileteEveniment, numarBileteRamaseEveniment, distributieTeatru, genTeatru);
+//
+//        adaugaEvenimente(e);
+
+        Eveniment e = new PiesaDeTeatru.PiesaDeTeatruBuilder()
+                .setTip()
+                .setDenumire(denumireEveniment)
+                .setLocatie(locatieEveniment)
+                .setData(dataEveniment)
+                .setOrganizator(organizatorEveniment)
+                .setNumarTotalBilete(numarTotalBileteEveniment)
+                .setNumarBileteRamase(numarBileteRamaseEveniment)
+                .setDistributie(distributieTeatru)
+                .setGenPiesa(genTeatru)
+                .build();
 
         adaugaEvenimente(e);
     }
@@ -486,7 +584,21 @@ public class PlatformaET {
         int varstaMinimaStandup = scanner.nextInt();
         scanner.nextLine();
 
-        Eveniment e = new StandUp(tipEveniment, denumireEveniment, dataEveniment, organizatorEveniment, locatieEveniment, numarTotalBileteEveniment, numarBileteRamaseEveniment, listaComedianti, varstaMinimaStandup);
+       // Eveniment e = new StandUp(tipEveniment, denumireEveniment, dataEveniment, organizatorEveniment, locatieEveniment, numarTotalBileteEveniment, numarBileteRamaseEveniment, listaComedianti, varstaMinimaStandup);
+      //  adaugaEvenimente(e);
+
+        Eveniment e = new StandUp.StandUpBuilder()
+                .setTip()
+                .setDenumire(denumireEveniment)
+                .setLocatie(locatieEveniment)
+                .setData(dataEveniment)
+                .setOrganizator(organizatorEveniment)
+                .setNumarTotalBilete(numarTotalBileteEveniment)
+                .setNumarBileteRamase(numarBileteRamaseEveniment)
+                .setComedianti(listaComedianti)
+                .setVarstaMinimaIntrare(varstaMinimaStandup)
+                .build();
+
         adaugaEvenimente(e);
     }
 
@@ -518,7 +630,18 @@ public class PlatformaET {
         System.out.println("Introduceti parola clientului: ");
         String parolaClient = scanner.nextLine();
 
-        Client c = new Client(numeClient, prenumeClient, dataInregistrareClient, emailClient, usernameClient, parolaClient);
+        //Client c = new Client(numeClient, prenumeClient, dataInregistrareClient, emailClient, usernameClient, parolaClient);
+
+       // adaugaClienti(c);
+
+        Client c = new Client.ClientBuilder().
+                setNume(numeClient).
+                setPrenume(prenumeClient).
+                setDataInregistrare(dataInregistrareClient).
+                setEmail(emailClient).
+                setUsername(usernameClient).
+                setParola(parolaClient).
+                setEsteLogat(false).build();
 
         adaugaClienti(c);
     }
