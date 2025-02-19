@@ -1,5 +1,15 @@
 # E-ticketing Application
 
-This project incorporates essential Object-Oriented Programming principles such as polymorphism, inheritance, abstraction, encapsulation.
+A Java-based application that simulates real-world e-ticketing functionality. Users can log in, search for events by various criteria, and "purchase" tickets.
 
-In the construction of this application, design patterns like Builder and Singleton, along with efficient data structures, have been employed for easier data management and storage. Key features include user login and logout, along with  ticket purchasing capabilities, all crafted to deliver an intuitive user experience.
+# Key Features
+
+  ● User Authentication: Login and logout functionality.
+
+  ● Event Search: Filter events by different criteria.
+
+  ● Ticket Purchase: Simulated ticket purchasing system.
+
+  ● OOP Principles: Implements object-oriented programming concepts.
+
+  ● Design Patterns & Data Structures
